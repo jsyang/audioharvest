@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# from http://stackoverflow.com/questions/5244279/apply-ffmpeg-to-many-files
+
+find . -name "*.flv" | while read filename;
+do
+        new_filename=$(echo "$filename" | sed "s/^\(.*\)flv$/\1mp3/g");
+        if [ ! -f "$new_filename" ]
+        then
+                ffmpeg -i "$filename" -b:a 192K -vn "$new_filename" &
+                wait $!;
+        fi
+done
