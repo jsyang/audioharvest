@@ -75,6 +75,7 @@ handlePlaylistDownloadRequest = (req, res) ->
   
   console.log("Received request for '#{GET.playlistID}'...")
   
+  # http://stackoverflow.com/questions/4607855/getting-videos-from-a-users-playlist-youtube-api
   http.get(
     "http://gdata.youtube.com/feeds/api/playlists/#{GET.playlistID}",
     (getRes) ->
