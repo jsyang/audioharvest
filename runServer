@@ -1,2 +1,4 @@
 #!/bin/bash
+mkdir flv
+mkdir mp3
 coffee audioHarvestServer.coffee -n
