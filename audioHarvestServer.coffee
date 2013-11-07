@@ -44,10 +44,11 @@ convertVideoToMP3 = ->
   )
 
 moveMP3s = ->
-  child_process.exec(
-    'mv flv/*.mp3 mp3/'
-  )
+  child_process.exec('mv flv/*.mp3 mp3/')
 
+generateM3U = ->
+  child_process.exec('./makeM3U')
+  
 global.downloadPlaylist = ->
   nextVideo = _playlist.shift()
   if nextVideo?

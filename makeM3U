@@ -1,0 +1,22 @@
+#!/bin/bash
+
+header="#EXTM3U"
+#datestamp=$(date +%s)
+datestamp=1383778484
+prefix="file:///SDCard/BlackBerry/music/$datestamp"
+
+mkdir mp3/$datestamp
+mv mp3/*.mp3 "mp3/$datestamp"
+
+ls mp3/$datestamp > "mp3/tmp.m3u"
+
+# http://stackoverflow.com/questions/2099471/add-a-prefix-string-to-beginning-of-each-line
+awk 'BEGIN{f=ARGV[1]}
+     {
+        {print "'$prefix'/"$0}
+     }' "mp3/tmp.m3u" > "mp3/tmp1.m3u"
+
+m3ufile="mp3/$datestamp.m3u"
+echo $header > $m3ufile
+cat "mp3/tmp1.m3u" >> $m3ufile
+rm mp3/tmp*.m3u
