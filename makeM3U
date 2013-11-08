@@ -1,8 +1,7 @@
 #!/bin/bash
 
 header="#EXTM3U"
-#datestamp=$(date +%s)
-datestamp=1383778484
+datestamp=$(date +%s)
 prefix="file:///SDCard/BlackBerry/music/$datestamp"
 
 mkdir mp3/$datestamp

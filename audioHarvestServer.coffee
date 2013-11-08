@@ -44,10 +44,21 @@ convertVideoToMP3 = ->
   )
 
 moveMP3s = ->
-  child_process.exec('mv flv/*.mp3 mp3/')
+  child_process.exec(
+    'mv flv/*.mp3 mp3/',
+    { cwd : './' },
+    ->
+      generateM3U()
+  )
 
 generateM3U = ->
-  child_process.exec('./makeM3U')
+  console.log('Generating M3U playlist...')
+  child_process.exec(
+    './makeM3U',
+    { cwd : './' },
+    ->
+      console.log('Done! Your playlist is ready.');
+  )
   
 global.downloadPlaylist = ->
   nextVideo = _playlist.shift()
